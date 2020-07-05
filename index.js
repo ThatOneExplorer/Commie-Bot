@@ -437,16 +437,19 @@ return message.channel.send(RolePermsEmbed)
     
    
     const fetched = await message.channel.messages.fetch({limit: deleteCount});
-    message.channel.bulkDelete(fetched)
+
+
     let purgeembed = new Discord.MessageEmbed()
     .setTitle(`Succesfully Purged ${deleteCount} messages`)
 
+    
   
-     
-
+    message.channel.bulkDelete(fetched)
 
     message.channel.send(purgeembed)
-    
+    .then(msg => {
+      msg.delete({ timeout: 2000})
+    })
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
 
