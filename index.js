@@ -6,6 +6,7 @@ client.on('ready', () => {
  console.log('Ready to serve the communists and ban the capitalists!')
 });
 
+
 const { prefix, token } = require('./config.json');
 
 client.login(token);
@@ -68,6 +69,12 @@ client.on("guildDelete", guild => {
   client.user.setActivity(`I am currently stalking ${client.guilds.cache.size} servers`);
 });
 
+
+client.on('message', async message => {
+
+  console.log(`#${message.channel.name} ${message.author.username}: ${message.content},`)
+
+});
 
 client.on("message", async message => {
 
@@ -301,6 +308,8 @@ return message.channel.delete()
      { name: 'reason', value: (dMessage)},
     )
 
+
+
     let ServerWarnEmbed = new Discord.MessageEmbed()
     .setThumbnail('https://cdn.discordapp.com/attachments/728057876278411411/730937549325074562/caution-152926_640.png')
     .setTitle(`Warned ${member.user.username}`)
@@ -456,7 +465,7 @@ return message.channel.send(RolePermsEmbed)
 
     
   
-    message.channel.bulkDelete(fetched)
+   await message.channel.bulkDelete(fetched)
 
     message.channel.send(purgeembed)
     .then(msg => {
@@ -464,6 +473,9 @@ return message.channel.send(RolePermsEmbed)
     })
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
+
+if(message.channel.send)
+
 
 
   if(command === 'mute') {
@@ -644,6 +656,7 @@ return message.channel.send(RolePermsEmbed)
 
 
   const ReactionRole = require("reaction-role");
+const { timeStamp } = require('console');
   const system = new ReactionRole(token);
   
   let option1 = system.createOption("✅", "728057875578093613");
@@ -695,4 +708,6 @@ GeneralChat.send(welcomeembed)
 
 
       });
+
+
 
